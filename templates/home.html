@@ -1,0 +1,107 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container py-5">
+  <!-- Welcome message with Bootstrap card and icon -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-8">
+      <div
+        id="welcome-message"
+        class="card shadow text-center border-0 animate__animated animate__fadeInDown"
+        style="opacity: 0; transition: opacity 1.5s"
+      >
+        <div class="card-body">
+          <h1 class="card-title mb-2">
+            <i class="bi bi-heart-pulse-fill text-danger me-2"></i>
+            Welcome to the
+            <span class="text-primary">DiagnoSys Health App</span>
+          </h1>
+          <p class="card-text lead">Your smart health assistant</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("welcome-message").style.opacity = 1;
+    });
+  </script>
+
+  <!-- Symptom input form with card -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+      <div class="card shadow border-0 animate__animated animate__fadeInUp">
+        <div class="card-body">
+          <form method="POST">
+            <div class="mb-3">
+              <label for="symptoms" class="form-label fw-bold">
+                <i class="bi bi-clipboard-pulse me-2"></i>Enter your symptoms
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="symptoms"
+                name="symptoms"
+                placeholder="What are you feeling today? e.g., fever, cough"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              <i class="bi bi-search-heart me-1"></i>Check Disease
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Display results -->
+  {% if diseases is not none %}
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      {% if diseases %}
+      <div
+        class="alert alert-success animate__animated animate__fadeIn mb-4"
+        role="alert"
+      >
+        <h3 class="mb-3">
+          <i class="bi bi-activity me-2"></i>Possible Diseases:
+        </h3>
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+          {% for disease in diseases %}
+          <div class="col">
+            <div
+              class="card h-100 shadow-sm border-primary border-2 animate__animated animate__zoomIn"
+            >
+              <div class="card-body">
+                <h5 class="card-title">
+                  <i class="bi bi-capsule-pill text-primary me-2"></i>{{ disease
+                  }}
+                </h5>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% else %}
+      <div
+        class="alert alert-warning animate__animated animate__fadeIn"
+        role="alert"
+      >
+        <i class="bi bi-exclamation-triangle me-2"></i>No matching diseases
+        found.
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+<!-- Bootstrap Icons & Animate.css -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+{% endblock content %}
