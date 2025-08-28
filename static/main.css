@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Footer styling moved from layout.html */
+.site-footer{
+    background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+.site-footer a{ transition: transform .15s ease, opacity .15s ease; }
+.site-footer a:hover{ transform: translateY(-2px); opacity: .9; }
+.site-footer .site-footer-link { text-decoration: none; }
+.site-footer .bi { font-size: 1.05rem; vertical-align: -.125rem; }
